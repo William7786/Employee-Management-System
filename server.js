@@ -45,6 +45,60 @@ inquirer.prompt({
     }
 })
 }
+const All = () => {
+    connection.query("SELECT * From employees", (err, res) =>{
+        console.table(res)
+    })
+}
+const Departments = () => {
+connection.query("SELECT * From department",(err, res) => {
+    console.table(res)
+})
+
+}
+const Roles = () => {
+connection.query("SELECT * From roles")
+console.table(res)
+}
+
+const addE = () => {
+    inquirer.prompt([
+        {
+            message: "What is the first name of the employee?",
+            type: "input",
+            name: "firstN"
+        },
+        {
+            message: "What is the last name of the employee?",
+            type: "input",
+            name: "lastN"
+        },
+        {
+            message: "What is the employees role?",
+            type: "input",
+            name: "role"
+        },
+    ])
+    .then((answer) => {
+
+    })
+}
+
+const addD = () => {
+
+}
+
+const addR = () => {
+
+}
+
+const removeE = () => {
+    
+}
+
+
+
+
 
 connection.connect((error)=>{
     Start();
