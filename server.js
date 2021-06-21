@@ -1,6 +1,6 @@
-// const Table = require ("console.table");
+const table = require ("console.table");
 const inquirer = require ("inquirer");
-const ConfirmPrompt = require("inquirer/lib/prompts/confirm");
+// const ConfirmPrompt = require("inquirer/lib/prompts/confirm");
 const mysql = require ("mysql")
 
 const connection = mysql.createConnection({
@@ -8,7 +8,7 @@ const connection = mysql.createConnection({
     port: 3306,
     user: "root",
     password: "password",
-    database:"employee_DB"
+    database:"employee_db"
 })
 const Start = () => {
 inquirer.prompt({
@@ -17,8 +17,8 @@ inquirer.prompt({
     message: "What would you like to get done today?",
     choices:[
     "View Employees", 
-    "Veiw Departments",
-    "Veiw Roles",
+    "View Departments",
+    "View Roles",
     "Add Employee",
     "Add Department",
     "Add Role",
@@ -26,11 +26,11 @@ inquirer.prompt({
     "Done"
 ],
 }) .then((answer)=>{
-    if (answer.start === "Veiw Employees"){
+    if (answer.start === "View Employees"){
         All()
-    }else if (answer.start === "Veiw Roles"){
+    }else if (answer.start === "View Roles"){
         Roles()
-    }else if(answer.start === "Veiw Department"){
+    }else if(answer.start === "View Departments"){
         Departments()
     }else if (answer.start === "Add Employee"){
         addE()
@@ -46,10 +46,21 @@ inquirer.prompt({
 })
 }
 const All = () => {
-    connection.query("SELECT * From employees", (err, res) =>{
+    connection.query("SELECT * FROM employee", (err, res) =>{
+        if(err){
+            console.log(err);
+        }
+        // console.log(`Name: ${employee.first_name}${employee.last_name}|Role Id: ${employee.role_id}|Manager id:${employee.manager_id}`);
+        console.log("All Employees")
         console.table(res)
+        
+        next()
     })
+
 }
+
+
+
 const Departments = () => {
 connection.query("SELECT * From department",(err, res) => {
     console.table(res)
@@ -57,9 +68,26 @@ connection.query("SELECT * From department",(err, res) => {
 
 }
 const Roles = () => {
-connection.query("SELECT * From roles")
-console.table(res)
+connection.query("SELECT * From roles", (err, res) => {
+ console.log("All Roles")
+ console.table(res)
+ 
+ next() 
+})
 }
+
+const next = () =>{
+    inquirer.prompt({
+         type: "list",
+         name: "continue",
+         message: "Would you like to continue?",
+         choices: ["yes","no"],
+     }).then((answer)=>{
+     if (answer.continue=== "yes"){
+     Start()
+     } else { connection.end();
+     }}
+ )}
 
 const addE = () => {
     inquirer.prompt([
@@ -101,7 +129,26 @@ inquirer.prompt([
 }
 
 const addR = () => {
+inquirer.prompt([
+    {   
+        message: "What is the new role?",
+        type: "input",
+        name:"rName"
 
+    },
+    {
+        message: "What is this roles salary?",
+        type:"input",
+        name: "rSalary"
+    },
+    {
+        message: "What is the role department ID",
+        type:"input",
+        name:"rDepartment"
+    }
+]).then((answer) => {
+    connection.query()
+})
 }
 
 const removeE = () => {
