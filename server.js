@@ -63,7 +63,9 @@ const All = () => {
 
 const Departments = () => {
 connection.query("SELECT * From department",(err, res) => {
+    console.log("ALL Departments")
     console.table(res)
+    next()
 })
 
 }

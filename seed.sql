@@ -23,3 +23,5 @@ INSERT into employee (first_name, last_name, role_id, manager_id)
 VALUE ("George", "Jhonson", 1, null),("Bob", "Renalds", 2, 1),("Eduardo", "George", 1, 0),("William", "Newton", 2, 1);
 INSERT into roles (title, salary, department_id)
 VALUE ("Engineer", 100000.00, 1), ("Advertizing", 75000.00, 1), ("Sales Lead", 60000.00, 1),("Accountant", 80000.00, 1);
+INSERT into department (id, name)
+Value ("1", "Engineer")("2", "Advertizing")("3", "Sales Lead")("4", "Accountant")
