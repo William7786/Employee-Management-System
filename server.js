@@ -85,7 +85,19 @@ const addE = () => {
 }
 
 const addD = () => {
-
+inquirer.prompt([
+    {
+    message: "What is the department name?",
+    type: "input",
+    name:"departmentN"
+    },
+    
+]).then((answer) => {
+    "INSERT INTO department SET",
+    {
+        name: answer.departmentN
+    }
+})
 }
 
 const addR = () => {
@@ -93,7 +105,7 @@ const addR = () => {
 }
 
 const removeE = () => {
-    
+
 }
 
 
