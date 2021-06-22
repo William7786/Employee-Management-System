@@ -25,3 +25,6 @@ INSERT into roles (title, salary, department_id)
 VALUE ("Engineer", 100000.00, 1), ("Advertizing", 75000.00, 1), ("Sales Lead", 60000.00, 1),("Accountant", 80000.00, 1);
 INSERT into department (id, name)
 Value ("1", "Engineer")("2", "Advertizing")("3", "Sales Lead")("4", "Accountant")
+
+SELECT 
+CONCAT(m.last_name, ',', m.first_name) AS 

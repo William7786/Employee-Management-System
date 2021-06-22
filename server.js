@@ -96,22 +96,38 @@ const addE = () => {
         {
             message: "What is the first name of the employee?",
             type: "input",
-            name: "firstN"
+            name: "first_name"
         },
         {
             message: "What is the last name of the employee?",
             type: "input",
-            name: "lastN"
+            name: "last_name"
         },
         {
             message: "What is the employees role?",
             type: "input",
-            name: "role"
+            name: "role_id"
+        }, 
+        {
+            message: "What is the employees manager id?",
+            type: "input",
+            name: "manager_id"
         },
     ])
     .then((answer) => {
-
+        connection.query(
+            "INSERT INTO employee SET?",
+            {
+            first_name: answer.first_name,
+            last_name: answer.last_name,
+            role_id: answer.role_id,
+            manager_id: answer.manager_id
+        });
+        console.log("Your new employee has been added to the roster!");
+        
+        next()
     })
+    
 }
 
 const addD = () => {
@@ -150,6 +166,8 @@ inquirer.prompt([
     }
 ]).then((answer) => {
     connection.query()
+    
+   
 })
 }
 
