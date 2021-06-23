@@ -26,5 +26,7 @@ VALUE ("Engineer", 100000.00, 1), ("Advertizing", 75000.00, 1), ("Sales Lead", 6
 INSERT into department (id, name)
 Value ("1", "Engineer")("2", "Advertizing")("3", "Sales Lead")("4", "Accountant")
 
-SELECT 
-CONCAT(m.last_name, ',', m.first_name) AS 
+SELECT e.id, e.first_name, e.last_name, roles.title, department.Dname AS Department, roles.salary, CONCAT(m.first_name, " ", m.last_name) 
+AS manager FROM employee e LEFT JOIN employee m ON m.id = e.manager_id
+JOIN roles ON e.role_id = roles.id
+JOIN department ON department.id = roles.department_id;

@@ -1,5 +1,6 @@
 const table = require ("console.table");
 const inquirer = require ("inquirer");
+const figlet = require ("figlet");
 // const ConfirmPrompt = require("inquirer/lib/prompts/confirm");
 const mysql = require ("mysql")
 
@@ -10,12 +11,19 @@ const connection = mysql.createConnection({
     password: "password",
     database:"employee_db"
 })
+figlet("Employee Management!", function(err,data){
+    if (err){console.log("Something Went Wrong")}
+    console.log(data)
+})
 const Start = () => {
+
+
 inquirer.prompt({
     name: "start",
     type: "list",
     message: "What would you like to get done today?",
     choices:[
+    "Info",
     "View Employees", 
     "View Departments",
     "View Roles",
@@ -40,6 +48,8 @@ inquirer.prompt({
         addR()
     }else if (answer.start === "Remove Employee"){
         removeE()
+    }else if (answer.start === "Info"){
+        Info()
     }else{
         connection.end();
     }
@@ -59,7 +69,22 @@ const All = () => {
 
 }
 
+const Info = () => {
+    const query =`SELECT e.id, e.first_name, e.last_name, roles.title, department.Dname AS Department, roles.salary, CONCAT(m.first_name, " ", m.last_name) 
+    AS manager FROM employee e LEFT JOIN employee m ON m.id = e.manager_id
+    JOIN roles ON e.role_id = roles.id
+    JOIN department ON department.id = roles.department_id;`
+    connection.query(query, (err, res) =>{
+        if(err){
+            console.log(err);
+        }
+        console.log("Info")
+        console.table(res)
+        
+        next()
+    })
 
+}
 
 const Departments = () => {
 connection.query("SELECT * From department",(err, res) => {
