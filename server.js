@@ -135,15 +135,19 @@ inquirer.prompt([
     {
     message: "What is the department name?",
     type: "input",
-    name:"departmentN"
+    name:"Dname"
     },
     
 ]).then((answer) => {
-    "INSERT INTO department SET",
+    connection.query(
+    "INSERT INTO department SET ?",
     {
-        name: answer.departmentN
-    }
-})
+        Dname: answer.Dname
+    })
+    console.log ("Your New department has been added!!!"),
+    next()
+    
+}); 
 }
 
 const addR = () => {
