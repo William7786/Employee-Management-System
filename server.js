@@ -169,9 +169,16 @@ inquirer.prompt([
         name:"rDepartment"
     }
 ]).then((answer) => {
-    connection.query()
-    
-   
+    connection.query(
+    "INSERT INTO roles SET ?",
+   {
+    title: answer.rName,
+    salary: answer.rSalary,
+    department_id: answer.rDepartment,
+
+   })
+   console.log("Your new role has been added!!!"),
+   next()
 })
 }
 
