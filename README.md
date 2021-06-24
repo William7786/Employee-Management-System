@@ -1,3 +1,29 @@
+myReadme{
+
+FIRST I INSTALLED THE BASIC FILES
+
+NEXT I STARTED TO BUILD THE FILE STRUCTURE FOR THE SERVER.JS
+
+THEN I CREATED MY IF STATEMENTS
+
+NEXT I WROTE MORE FUNCTIONS AND CREATED MY DATABASE
+
+THEN I STARTED TO WORK ON FUNCTIONALITY
+
+NEXT I ADDED DATA INTO DATABASE
+
+THEN FIXED FUNCTIONALITY OF ADD EMPLOYEE
+
+THEN FIXED FUNCTIONALITY OF ADD DEPARTMENTS
+
+THEN FIXED NEW ROLES
+
+NEXT WORKED ON THE JOIN STATEMENTS
+}
+
+
+
+
 # Unit 12 MySQL Homework: Employee Tracker
 
 Developers are often tasked with creating interfaces that make it easy for non-developers to view and interact with information stored in databases. Often these interfaces are known as **C**ontent **M**anagement **S**ystems. In this homework assignment, your challenge is to architect and build a solution for managing a company's employees using node, inquirer, and MySQL.
